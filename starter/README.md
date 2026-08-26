@@ -44,3 +44,8 @@ Once the server is running, navigate to `http://127.0.0.1:5000/` in your web bro
 - **`GET /api/orders/<order_id>`**: Retrieve a specific order
 - **`PUT /api/orders/<order_id>/status`**: Update the status of an existing order
 - **`GET /api/orders`**: List all orders (supports `?status=` query parameter)
+
+## Project Reflection
+
+*   **Design Decision**: `OrderTracker` utilizes Dependency Injection by accepting a `storage` object upon initialization rather than hardcoding a specific data store. This decouples the business logic from data persistence, allowing us to easily swap `InMemoryStorage` with a real database (like PostgreSQL) later on.
+*   **Next-Step Improvement**: Currently, the application lacks a deletion mechanism. A logical next step is implementing a `DELETE /api/orders/<order_id>` endpoint to handle the removal of cancelled or erroneous orders. Furthermore, migrating from the current in-memory storage to persistent storage using an ORM like SQLAlchemy would be essential for production readiness.
